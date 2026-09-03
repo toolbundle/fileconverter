@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Automatic Cache Revalidation (No Hard-Refresh Required) -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>FileConverter by ToolBundle - 100% Free Client-Side File Conversion</title>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <style>
@@ -138,7 +144,7 @@
       display: none;
     }
 
-    /* Supported Formats Panel */
+    /* Supported Formats */
     .formats-preview {
       margin-top: 20px;
       display: grid;
@@ -192,7 +198,7 @@
       border: 1px solid #374151;
     }
 
-    /* Configuration Panel */
+    /* Options Stage */
     .stage-panel {
       display: none;
       margin-top: 24px;
@@ -306,13 +312,13 @@
 <body>
 
   <header>
-    <a href="url?id=0" class="brand">
+    <a href="https://toolbundle.github.io/toolbundle/" class="brand">
       <div class="logo">FC</div>
       <strong>FileConverter <span style="font-weight: 400; color: var(--muted); font-size: 12px;">by ToolBundle</span></strong>
     </a>
     <div class="nav-actions">
       <a href="https://toolbundle.github.io/toolbundle/" class="nav-link">← Hub</a>
-      <a href="url?id=1" class="nav-link">Feedback</a>
+      <a href="mailto:contacttoolbundle@gmail.com" class="nav-link">Feedback</a>
     </div>
   </header>
 
@@ -327,7 +333,7 @@
       <input type="file" id="file-input" class="file-input">
     </div>
 
-    <!-- Explicit Supported Formats Display -->
+    <!-- Supported Formats Listing -->
     <div class="formats-preview" id="formats-preview">
       <div class="format-group">
         <div class="format-group-header">
