@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FileConverter — Fast Client-Side Converter by ToolBundle</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>FileConverter by ToolBundle — Fast Client-Side Converter</title>
   <style>
     :root {
       --bg: #090b10;
@@ -15,7 +18,7 @@
       --accent-hover: #2563eb;
       --text: #f3f4f6;
       --muted: #9ca3af;
-      --success: #10b981;
+      --brand-green: #10b981;
       --danger: #ef4444;
       --warning: #f59e0b;
     }
@@ -23,27 +26,29 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background: var(--bg); color: var(--text); padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
 
-    /* Shared Top Nav */
-    .nav-header { width: 100%; border-bottom: 1px solid var(--border); background: var(--surface); padding: 0.85rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-    .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text); font-weight: 700; font-size: 1.1rem; }
+    /* Universal ToolBundle Top Nav */
+    .nav-header { width: 100%; border-bottom: 1px solid var(--border); background: var(--surface); padding: 0.85rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .brand-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); }
+    .tb-badge { background: var(--brand-green); color: #ffffff; font-weight: 900; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 6px; letter-spacing: 0.05em; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+    .brand-title { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+    .brand-sub { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+
     .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
     .badge { font-size: 0.75rem; padding: 0.25rem 0.65rem; border-radius: 9999px; background: var(--card); border: 1px solid var(--border); color: var(--muted); font-weight: 600; }
-    .badge.active { border-color: rgba(16, 185, 129, 0.4); color: var(--success); }
+    .badge.active { border-color: rgba(16, 185, 129, 0.4); color: var(--brand-green); }
 
     .btn { background: var(--accent); color: white; border: none; padding: 0.55rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: 0.15s; }
     .btn:hover { background: var(--accent-hover); }
     .btn-secondary { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
-    .btn-secondary:hover { background: var(--card); }
+    .btn-secondary:hover { background: var(--card); border-color: var(--border-hover); }
 
     .container { width: 100%; max-width: 760px; padding: 3rem 1.5rem 5rem; }
 
-    /* Hero */
     .hero { text-align: center; margin-bottom: 2.5rem; }
     .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.85rem; border-radius: 9999px; background: var(--surface); border: 1px solid var(--border); color: var(--accent); margin-bottom: 1.25rem; }
     h1 { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
     p.lead { color: var(--muted); font-size: 1rem; max-width: 540px; margin: 0 auto; line-height: 1.6; }
 
-    /* Drop Zone */
     .dropzone {
       background: var(--surface); border: 2px dashed var(--border); border-radius: 14px;
       padding: 3rem 2rem; text-align: center; cursor: pointer; transition: 0.2s;
@@ -54,7 +59,6 @@
     .drop-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
     .dropzone p { color: var(--muted); font-size: 0.9rem; margin-top: 0.35rem; }
 
-    /* Control Box */
     .control-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; display: none; margin-bottom: 1.5rem; }
     .file-details { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
     .file-name { font-weight: 600; max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -64,7 +68,6 @@
     select { flex: 1; background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 0.65rem; border-radius: 8px; font-size: 0.9rem; outline: none; }
     select:focus { border-color: var(--accent); }
 
-    /* Shared Footer */
     footer { width: 100%; border-top: 1px solid var(--border); background: var(--surface); padding: 1.5rem; text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: auto; }
     footer a { color: var(--text); text-decoration: none; font-weight: 600; }
   </style>
@@ -72,8 +75,12 @@
 <body>
 
 <header class="nav-header">
-  <a href="https://toolbundle.github.io/" class="brand">
-    <span>⚡</span> ToolBundle
+  <a href="https://toolbundle.github.io/" class="brand-link">
+    <span class="tb-badge">TB</span>
+    <div>
+      <div class="brand-title">FileConverter</div>
+      <div class="brand-sub">BY TOOLBUNDLE</div>
+    </div>
   </a>
   <div class="nav-actions">
     <span class="badge active">● 100% Client-Side</span>
@@ -85,7 +92,7 @@
   <div class="hero">
     <div class="hero-badge">⚡ Instant File Converter</div>
     <h1>Convert Files Locally</h1>
-    <p class="lead">Privately convert images and documents in your browser. Files never leave your machine.</p>
+    <p class="lead">Privately convert images and documents directly in your browser. Files never leave your device.</p>
   </div>
 
   <div class="dropzone" id="dropArea" onclick="document.getElementById('fileInput').click()">
@@ -118,7 +125,7 @@
 
 <script>
   let currentFile = null;
-  let fileType = ''; // 'image' or 'text'
+  let fileType = '';
 
   const dropArea = document.getElementById('dropArea');
 
