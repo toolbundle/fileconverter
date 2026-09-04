@@ -26,12 +26,13 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background: var(--bg); color: var(--text); padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
 
-    /* Universal ToolBundle Top Nav */
+    /* Top Nav */
     .nav-header { width: 100%; border-bottom: 1px solid var(--border); background: var(--surface); padding: 0.85rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-    .brand-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); }
-    .tb-badge { background: var(--brand-green); color: #ffffff; font-weight: 900; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 6px; letter-spacing: 0.05em; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
-    .brand-title { font-size: 1.05rem; font-weight: 700; color: var(--text); }
-    .brand-sub { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+    .brand-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text); cursor: pointer; }
+    .tb-square { width: 32px; height: 32px; background: var(--brand-green); color: #ffffff; font-weight: 900; font-size: 0.85rem; border-radius: 8px; display: flex; align-items: center; justify-content: center; letter-spacing: 0.05em; flex-shrink: 0; cursor: pointer; }
+    .brand-title-group { display: flex; align-items: baseline; gap: 0.5rem; cursor: pointer; }
+    .brand-title { font-size: 1.15rem; font-weight: 700; color: var(--text); cursor: pointer; }
+    .brand-by { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; cursor: pointer; }
 
     .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
     .badge { font-size: 0.75rem; padding: 0.25rem 0.65rem; border-radius: 9999px; background: var(--card); border: 1px solid var(--border); color: var(--muted); font-weight: 600; }
@@ -65,21 +66,21 @@
     .file-size { color: var(--muted); font-size: 0.8rem; }
 
     .action-row { display: flex; gap: 1rem; align-items: center; }
-    select { flex: 1; background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 0.65rem; border-radius: 8px; font-size: 0.9rem; outline: none; }
+    select { flex: 1; background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 0.65rem; border-radius: 8px; font-size: 0.9rem; outline: none; cursor: pointer; }
     select:focus { border-color: var(--accent); }
 
     footer { width: 100%; border-top: 1px solid var(--border); background: var(--surface); padding: 1.5rem; text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: auto; }
-    footer a { color: var(--text); text-decoration: none; font-weight: 600; }
+    footer a { color: var(--text); text-decoration: none; font-weight: 600; cursor: pointer; }
   </style>
 </head>
 <body>
 
 <header class="nav-header">
   <a href="https://toolbundle.github.io/" class="brand-link">
-    <span class="tb-badge">TB</span>
-    <div>
-      <div class="brand-title">FileConverter</div>
-      <div class="brand-sub">BY TOOLBUNDLE</div>
+    <div class="tb-square">TB</div>
+    <div class="brand-title-group">
+      <span class="brand-title">FileConverter</span>
+      <span class="brand-by">BY TOOLBUNDLE</span>
     </div>
   </a>
   <div class="nav-actions">
